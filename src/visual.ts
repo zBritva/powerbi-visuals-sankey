@@ -780,6 +780,10 @@ module powerbi.extensibility.visual {
 
                 sankeyDiagramDataView.links.forEach((l) => {
                     l.weigth = weightScale(l.weigth);
+
+                    if( Number.NEGATIVE_INFINITY === l.weigth || Number.POSITIVE_INFINITY  === l.weigth || isNaN(l.weigth)) {
+                        l.weigth = 0;
+                    };
                 });
 
                 if (sankeyDiagramDataView.links.some( (link: SankeyDiagramLink) => link.weigth < SankeyDiagram.NegativeValueRange)) {
